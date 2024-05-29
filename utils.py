@@ -10,10 +10,8 @@ def inf_close(z1: complex, z2: complex, radius):
     return False
 
 
-def inf_metric(z1: complex, z2: complex):
-    return max(abs(z1.real - z2.real), abs(z1.imag - z2.imag))
-
-# TODO: add reg metric and use for shading, possibly without square root
+def distance_sq(z1: complex, z2: complex):
+    return (z1.real - z2.real)**2 + (z1.imag - z2.imag)**2
 
 
 def color_palette(num_of_colors):
@@ -31,7 +29,7 @@ def shade_color(color, factor):
 
 def shading_weight(n, max_iter, epsilon, tolerance):
     x = 1-(n+epsilon/tolerance)/max_iter
-    return x*(3+x*(4*x-6))
+    return ((2*x-3)*x+2)*x
 
 
 def average_colors(list_of_colors):
